@@ -55,7 +55,19 @@ public class VHandler implements Handler {
      */
     private void checkSize(V v, Field field, Object value, String fieldName, String path) {
         if (value instanceof Integer) {
+            if (value == null || ObjectUtils.isEmpty(value)) {
+                return;
+            }
+            int min = v.min();
+            int max = v.max();
 
+            int valueInt = ((Integer) value).intValue();
+            if (valueInt < min) {
+                throw new ValidationException(path + fieldName + "值:[" + valueInt + "]不能小于最小值:[" + min + "]");
+            }
+            if(valueInt > max){
+                throw new ValidationException(path + fieldName + "值:[" + valueInt + "]不能大于最大值:[" + max + "]");
+            }
         }
     }
 }

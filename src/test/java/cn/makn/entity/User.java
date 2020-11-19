@@ -49,8 +49,8 @@ public class User {
     public static class car{
         @V(desc = "汽车颜色", notNull = true)
         private String color;
-        @V(desc = "汽车长度", notNull = true)
-        private String length;
+        @V(desc = "汽车长度", notNull = true, min = 1,max = 10)
+        private int length;
 
         public String getColor() {
             return color;
@@ -60,11 +60,11 @@ public class User {
             this.color = color;
         }
 
-        public String getLength() {
+        public int getLength() {
             return length;
         }
 
-        public void setLength(String length) {
+        public void setLength(int length) {
             this.length = length;
         }
 

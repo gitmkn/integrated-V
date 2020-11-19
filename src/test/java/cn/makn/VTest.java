@@ -45,7 +45,7 @@ public class VTest {
         List<User.car> car = new ArrayList<User.car>();
         User.car car1 = new User.car();
         car1.setColor("1");
-        car1.setLength("1");
+        car1.setLength(9);
         car.add(car1);
         user.setCarList(car);
         Validator v = ValidatorHandler.getInstance();
