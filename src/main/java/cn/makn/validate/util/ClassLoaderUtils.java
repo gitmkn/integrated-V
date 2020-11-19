@@ -1,7 +1,11 @@
 package cn.makn.validate.util;
 
 import org.springframework.util.ClassUtils;
+import org.springframework.util.ObjectUtils;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -40,5 +44,33 @@ public class ClassLoaderUtils {
      */
     public static ClassLoader getClassLoader(){
         return ClassLoaderUtils.class.getClassLoader();
+    }
+
+    /**
+     * 根据属性名称在对象中获取属性值
+     *
+     * @param obj
+     * @param fieldName
+     * @return
+     */
+    public static Object getField(Object obj, String fieldName) {
+        return getObject(obj, fieldName);
+    }
+
+    private static Object getObject(Object obj, String fieldName) {
+        Object value = null;
+        try {
+            String firstLetter = fieldName.substring(0, 1).toUpperCase();
+            String getter = "get" + firstLetter + fieldName.substring(1);
+            Method method = obj.getClass().getMethod(getter);
+            value = method.invoke(obj);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return value;
     }
 }
