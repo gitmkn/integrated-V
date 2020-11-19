@@ -1,4 +1,6 @@
-package cn.makn.validate;
+package cn.makn.validate.service;
+
+import cn.makn.validate.V;
 
 import java.lang.reflect.Field;
 
@@ -9,6 +11,7 @@ public interface Handler {
      * @param v V校验
      * @param field 字段
      * @param value 字段值
+     * @param path 字段位置
      */
-    void validate(V v, Field field, Object value);
+    void validate(V v, Field field, Object value, String path);
 }

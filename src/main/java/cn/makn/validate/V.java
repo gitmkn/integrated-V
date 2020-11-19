@@ -37,10 +37,16 @@ public @interface V {
     boolean notNull() default false;
 
     /**
-     * 是否为空,用于String类型和LIST类型检查,默认true
-     * @return true,false
+     * 最小整数，默认 Integer.MIN_VALUE
+     * @return int
      */
-    boolean notEmpty() default true;
+    int min() default Integer.MIN_VALUE;
+
+    /**
+     * 最大整数，默认 Integer.MAX_VALUE
+     * @return int
+     */
+    int max() default Integer.MAX_VALUE;
 
     /**
      * 用于检查STRING是否全部为数字,默认false

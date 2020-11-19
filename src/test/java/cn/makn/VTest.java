@@ -3,7 +3,8 @@ package cn.makn;
 
 import cn.makn.entity.User;
 import cn.makn.validate.V;
-import cn.makn.validate.service.Validator;
+import cn.makn.validate.Validator;
+import cn.makn.validate.service.ValidatorHandler;
 import cn.makn.validate.util.ClassLoaderUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -12,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import javax.xml.bind.ValidationException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VTest {
     private static final Logger log = LoggerFactory.getLogger(VTest.class);
@@ -38,8 +41,14 @@ public class VTest {
     @Test
     public void Test2() throws ValidationException {
         User user = new User();
-        user.setUser("");
-        Validator v = Validator.getInstance();
+        user.setUser("的风格和");
+        List<User.car> car = new ArrayList<User.car>();
+        User.car car1 = new User.car();
+        car1.setColor("1");
+        car1.setLength("1");
+        car.add(car1);
+        user.setCarList(car);
+        Validator v = ValidatorHandler.getInstance();
         v.validator(user);
     }
 }

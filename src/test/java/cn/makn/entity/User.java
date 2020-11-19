@@ -3,6 +3,8 @@ package cn.makn.entity;
 
 import cn.makn.validate.V;
 
+import java.util.List;
+
 /**
  * @version V1.0
  * @description
@@ -16,6 +18,9 @@ public class User {
 
     @V(desc = "用户密码")
     private String password;
+
+    @V(desc = "我的小汽车", notNull = true)
+    private List<car> carList;
 
     public String getUser() {
         return user;
@@ -31,5 +36,44 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<car> getCarList() {
+        return carList;
+    }
+
+    public void setCarList(List<car> carList) {
+        this.carList = carList;
+    }
+
+    public static class car{
+        @V(desc = "汽车颜色", notNull = true)
+        private String color;
+        @V(desc = "汽车长度", notNull = true)
+        private String length;
+
+        public String getColor() {
+            return color;
+        }
+
+        public void setColor(String color) {
+            this.color = color;
+        }
+
+        public String getLength() {
+            return length;
+        }
+
+        public void setLength(String length) {
+            this.length = length;
+        }
+
+        @Override
+        public String toString() {
+            return "car{" +
+                    "color='" + color + '\'' +
+                    ", length='" + length + '\'' +
+                    '}';
+        }
     }
 }
